@@ -10,5 +10,5 @@ public class ApplicationDbContext : DbContext
 
     }
 
-    DbSet<PurchaseItem> Purchases { get; set; }
+    public DbSet<PurchaseItem> Purchases { get; set; }
 }
