@@ -3,6 +3,7 @@ using PurchaseTracker.Api.Data;
 using PurchaseTracker.Api.Dtos;
 using PurchaseTracker.Api.Interfaces;
 using PurchaseTracker.Api.Mappers;
+using PurchaseTracker.Api.Models;
 
 namespace PurchaseTracker.Api.Repository;
 
@@ -14,14 +15,14 @@ public class PurchaseItemRepository : IPurchaseItemsRepository
         _context = context;
     }
 
-    public async Task<PurchaseItemDto> CreateItem(PurchaseItemDto itemDto)
+    public async Task<PurchaseItem> CreateItem(PurchaseItemDto itemDto)
     {
         var item = itemDto.ToPurchaseItem();
 
         await _context.Purchases.AddAsync(item);
         await _context.SaveChangesAsync();
 
-        return itemDto;
+        return item;
     }
 
     public async Task<PurchaseItemDto?> DeleteItem(int id)
